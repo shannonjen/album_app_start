@@ -4,6 +4,18 @@
 		<li id="album-<%= album.id %>">
 			<%= link_to album.user.username, album.user %>
 			<%= link_to album.title, album %>
+			<% unless current_user.favorites.exists?(album: album) %>
+				<%= form_for current_user.favorites.build do |f|%>
+					<%= hidden_field_tag :album_id, album.id %>
+					<%= f.submit "Favorite"%>
+				<% end %>
+			<% else %>
+				<%= form_for current_user.favorites.find_by(album: album), html: { method: :delete } do |f|%>
+					<%= hidden_field_tag :album_id, album.id %>
+					<%= f.submit "Unfavorite"%>
+				<% end %>
+			<% end %>
+
 		</li>
 	<% end %>
 </ul>
