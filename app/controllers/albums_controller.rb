@@ -1,7 +1,6 @@
 class AlbumsController < ApplicationController
 
 	def index
-		@album = current_user.albums.build
     @albums = Album.all
 	end
 
@@ -16,10 +15,6 @@ class AlbumsController < ApplicationController
 		else
 			redirect_to :back
 		end
-	end
-
-	def destroy
-
 	end
 
 	private

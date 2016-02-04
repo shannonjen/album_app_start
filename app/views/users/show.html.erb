@@ -9,7 +9,7 @@
 </ul>
 
 
-<%= form_for(@album) do |f| %>
+<%= form_for(current_user.albums.build) do |f| %>
 	<div class="field">
 		<%= f.text_field :title, placeholder: "Album Title" %>
 	</div>
